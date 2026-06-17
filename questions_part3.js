@@ -404,8 +404,8 @@ const questionsPart3 = [
     correct: 1,
     explanation: "ПИД-регулятор: «Увеличение пропорционального коэффициента увеличивает быстродействие и снижает запас устойчивости»; статическую ошибку П-канал уменьшает, но полностью не устраняет. Источник: ПИД-регулятор [Википедия; studfile.net].",
     source: "ПИД-регулятор (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D1%80%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B5%D0%B9",
-    extPhrase: "пропорциональной составляющей"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%A7%D0%B5%D0%BC%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82%20%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D1%80%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20%D0%B2%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%BC%20%D0%B8%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%BC%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%BE%D0%BC",
+    extPhrase: "Чем больше коэффициент пропорциональности между входным и выходным сигналом"
   },
   {
     id: 139,
@@ -420,8 +420,8 @@ const questionsPart3 = [
     correct: 2,
     explanation: "ПИД-регулятор: «Увеличение дифференциальной составляющей увеличивает запас устойчивости и быстродействие» (демпфирует перерегулирование; при избытке усиливает чувствительность к шумам). Источник: ПИД-регулятор [Википедия].",
     source: "ПИД-регулятор (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%B4%D0%B8%D1%84%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B5%D0%B9",
-    extPhrase: "дифференциальной составляющей"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%94%D0%B8%D1%84%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%80%D1%83%D1%8E%D1%89%D0%B0%D1%8F%20%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D1%80%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%20%D1%82%D0%B5%D0%BC%D0%BF%D1%83%20%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D1%82%D0%BA%D0%BB%D0%BE%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D0%BE%D0%B9%20%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B8%D0%BD%D1%8B",
+    extPhrase: "Дифференцирующая составляющая пропорциональна темпу изменения отклонения регулируемой величины"
   },
   {
     id: 140,
@@ -436,8 +436,8 @@ const questionsPart3 = [
     correct: 3,
     explanation: "ПИД-регулятор: «Интегральная составляющая устраняет статическую ошибку», приводя систему к заданному значению; при чрезмерном усилении растут перерегулирование и колебания. Источник: ПИД-регулятор [Википедия].",
     source: "ПИД-регулятор (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B5%D0%B9",
-    extPhrase: "интегральной составляющей"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%9F%D0%98%D0%94-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80#:~:text=%D0%98%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B8%D1%80%D1%83%D1%8E%D1%89%D0%B0%D1%8F%20%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D1%80%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%20%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D0%BB%D1%83%20%D0%BF%D0%BE%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8%20%D0%BE%D1%82%20%D0%BE%D1%82%D0%BA%D0%BB%D0%BE%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D0%BE%D0%B9%20%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B8%D0%BD%D1%8B",
+    extPhrase: "Интегрирующая составляющая пропорциональна интегралу по времени от отклонения регулируемой величины"
   },
   {
     id: 141,
@@ -524,8 +524,7 @@ const questionsPart3 = [
     multi: true,
     explanation: "Аэродинамическая сила раскладывается на лобовое сопротивление (вдоль потока), подъёмную и боковую силы. «Лобовое сопротивление складывается из сил касательного (тангенциального) трения… и сил давления, направленных по нормали к поверхности». Источник: Лобовое сопротивление [Википедия].",
     source: "Лобовое сопротивление (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%9B%D0%BE%D0%B1%D0%BE%D0%B2%D0%BE%D0%B5_%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5#:~:text=%D0%BB%D0%BE%D0%B1%D0%BE%D0%B2%D0%BE%D0%B5%20%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5",
-    extPhrase: "лобовое сопротивление"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%90%D1%8D%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5_%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5"
   },
   {
     id: 147,
@@ -540,8 +539,7 @@ const questionsPart3 = [
     correct: 0,
     explanation: "«Сила лобового сопротивления представляется суммой: сопротивления при нулевой подъёмной силе (давления + трения) и индуктивного сопротивления». Источник: Лобовое сопротивление [Википедия].",
     source: "Лобовое сопротивление (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%9B%D0%BE%D0%B1%D0%BE%D0%B2%D0%BE%D0%B5_%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5#:~:text=%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5%20%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5",
-    extPhrase: "индуктивное сопротивление"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%90%D1%8D%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5_%D1%81%D0%BE%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5"
   },
   {
     id: 148,
@@ -584,8 +582,8 @@ const questionsPart3 = [
     correct: 3,
     explanation: "Характер течения определяет число Рейнольдса: «область квадратичной зависимости силы от скорости простирается вплоть до Re ~ 10⁵… при малых числах Рейнольдса сила подчиняется закону Стокса». Источник: движение тел в среде с сопротивлением [mephi.ru; Википедия].",
     source: "Число Рейнольдса (mephi.ru)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0#:~:text=%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0",
-    extPhrase: "число Рейнольдса"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0#:~:text=%D0%94%D0%BB%D1%8F%20%D0%BA%D0%B0%D0%B6%D0%B4%D0%BE%D0%B3%D0%BE%20%D0%B2%D0%B8%D0%B4%D0%B0%20%D1%82%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D0%B5%D1%82%20%D0%BA%D1%80%D0%B8%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0",
+    extPhrase: "Для каждого вида течения существует критическое число Рейнольдса"
   },
   {
     id: 151,
@@ -614,8 +612,8 @@ const questionsPart3 = [
     correct: 2,
     explanation: "Числовой оценки в учебнике нет. По числу Рейнольдса переход к турбулентности происходит при Re ~ 10⁵; для R=1 м критическая линейная скорость — порядка единиц м/с, поэтому практически все рабочие режимы центрифуги турбулентные. Источник: критерий Рейнольдса [mephi.ru].",
     source: "Критерий Рейнольдса (mephi.ru)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0#:~:text=%D0%BA%D1%80%D0%B8%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0",
-    extPhrase: "критическое число Рейнольдса"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%A0%D0%B5%D0%B9%D0%BD%D0%BE%D0%BB%D1%8C%D0%B4%D1%81%D0%B0#:~:text=%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4%20%D0%BE%D1%82%20%D0%BB%D0%B0%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%82%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%82%D1%83%D1%80%D0%B1%D1%83%D0%BB%D0%B5%D0%BD%D1%82%D0%BD%D0%BE%D0%BC%D1%83",
+    extPhrase: "определяет переход от ламинарного течения к турбулентному"
   },
   {
     id: 153,
@@ -716,8 +714,7 @@ const questionsPart3 = [
     correct: 0,
     explanation: "Превышение номинальной частоты увеличивает износ контактов и электрический шум: «по мере износа щёток, накопления загрязнений или вибрации возникают колебания контактного сопротивления, вносящие шум». Источник: электрические токосъёмники/slip rings [motioncontroltips.com].",
     source: "Токосъёмники (motioncontroltips.com)",
-    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/#:~:text=slip%20ring",
-    extPhrase: "slip ring"
+    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/"
   },
   {
     id: 160,
@@ -761,8 +758,7 @@ const questionsPart3 = [
     correct: 1,
     explanation: "Ртутная амальгама — проводящая жидкометаллическая среда: «жидкий контакт ртути практически не создаёт вариаций, уровень шума — микровольты, а не милливольты; контактное сопротивление стабильно ниже 1 мОм». Источник: mercury slip rings [bt-slipring.com, mercotac.com].",
     source: "Mercury slip rings (bt-slipring.com, mercotac.com)",
-    extUrl: "https://www.mercotac.com/html/principles.html#:~:text=mercury",
-    extPhrase: "mercury"
+    extUrl: "https://www.mercotac.com/html/principles.html"
   },
   {
     id: 163,
@@ -777,8 +773,7 @@ const questionsPart3 = [
     correct: 1,
     explanation: "«В обычных токосъёмниках граница щётка-кольцо микроскопически меняется при вращении, порождая электрический шум; по мере износа, загрязнения или вибрации возникают колебания контактного сопротивления». Источник: slip rings [bt-slipring.com, motioncontroltips.com].",
     source: "Slip rings (bt-slipring.com)",
-    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/#:~:text=electrical%20noise",
-    extPhrase: "electrical noise"
+    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/"
   },
   {
     id: 164,
@@ -821,8 +816,7 @@ const questionsPart3 = [
     correct: 2,
     explanation: "Основные недостатки щёточных токосъёмников: «пружинные щётки создают постоянное механическое сопротивление, нагрев, износ и ограничивают скорость», а контакт порождает электрический шум. Источник: slip rings [bt-slipring.com, motioncontroltips.com].",
     source: "Slip rings (motioncontroltips.com)",
-    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/#:~:text=brushes",
-    extPhrase: "brushes"
+    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/"
   },
   {
     id: 167,
@@ -838,8 +832,7 @@ const questionsPart3 = [
     multi: true,
     explanation: "Передача сигналов с вращающегося ротора: щёточные и жидкометаллические (ртутные) токосъёмники, оптические (волоконные) соединители, радиоканал/телеметрия, индукционная передача — альтернативы контактным slip rings. Источник: бесконтактные/контактные токосъёмники [mercotac.com, motioncontroltips.com].",
     source: "Токосъёмники/телеметрия (mercotac.com)",
-    extUrl: "https://www.mercotac.com/html/principles.html#:~:text=mercury",
-    extPhrase: "mercury"
+    extUrl: "https://www.mercotac.com/html/principles.html"
   },
   {
     id: 168,
@@ -884,7 +877,6 @@ const questionsPart3 = [
     correct: 3,
     explanation: "Стенды качки и длительных наклонов регламентирует ГОСТ 30630.1.7-2013 «Испытания на воздействие ударов при свободном падении… на воздействие качки и длительных наклонов» — для машин, приборов и техизделий (в т.ч. судового/корабельного оборудования). Источник: ГОСТ 30630.1.7-2013 [docs.cntd.ru].",
     source: "ГОСТ 30630.1.7-2013 (docs.cntd.ru)",
-    extUrl: "https://docs.cntd.ru/document/1200113483#:~:text=%D0%BA%D0%B0%D1%87%D0%BA",
-    extPhrase: "качк"
+    extUrl: "https://docs.cntd.ru/document/1200113483"
   },
 ];

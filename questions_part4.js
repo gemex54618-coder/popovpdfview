@@ -14,8 +14,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "ГОСТ 30630.1.7-2013: после испытаний на качку «изделие проверяют при длительных наклонах до 45°… платформу с изделием наклоняют на 45° и удерживают не менее 5 минут, измеряя параметры изделия». Регламентируются бортовая, килевая качка и длительные наклоны. Источник: ГОСТ 30630.1.7-2013 [docs.cntd.ru].",
     source: "ГОСТ 30630.1.7-2013 (docs.cntd.ru)",
-    extUrl: "https://docs.cntd.ru/document/1200113483#:~:text=%D0%BD%D0%B0%D0%BA%D0%BB%D0%BE%D0%BD",
-    extPhrase: "наклон"
+    extUrl: "https://docs.cntd.ru/document/1200113483"
   },
   {
     id: 172,
@@ -110,8 +109,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "Поверка — подтверждение пригодности СИ к применению уполномоченным органом. По РМГ 29-2013: «совокупность операций, выполняемых в целях подтверждения соответствия средств измерений метрологическим требованиям» (в прежней редакции РМГ 29-99 — установление органом метрологической службы пригодности СИ к применению). Источник: РМГ 29-2013 [docs.cntd.ru].",
     source: "РМГ 29-2013 (docs.cntd.ru)",
-    extUrl: "https://docs.cntd.ru/document/1200115154#:~:text=%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0",
-    extPhrase: "поверка"
+    extUrl: "https://docs.cntd.ru/document/1200115154"
   },
   {
     id: 178,
@@ -140,8 +138,7 @@ const questionsPart4 = [
     correct: 1,
     explanation: "Калибровка (РМГ 29-2013) — определение действительных метрологических характеристик СИ; в отличие от поверки не является обязательной государственной процедурой. Источник: РМГ 29-2013 «ГСИ. Метрология. Основные термины и определения» [docs.cntd.ru].",
     source: "РМГ 29-2013 (docs.cntd.ru)",
-    extUrl: "https://docs.cntd.ru/document/1200115154#:~:text=%D0%BA%D0%B0%D0%BB%D0%B8%D0%B1%D1%80%D0%BE%D0%B2%D0%BA%D0%B0",
-    extPhrase: "калибровка"
+    extUrl: "https://docs.cntd.ru/document/1200115154"
   },
   {
     id: 180,
@@ -261,8 +258,7 @@ const questionsPart4 = [
     correct: 3,
     explanation: "По ГОСТ 14254-2015 (IEC 60529) максимальная маркировка — IP68 (6 — полная защита от пыли, 8 — длительное погружение в воду). В учебнике приведён пример смартфона IP67 («полная защита от пыли и погружение на 1 м»), а индексы доходят до 6 и 8 по таблице 5.7. Источник: ГОСТ 14254-2015 [docs.cntd.ru] + раздел 5.10.",
     source: "ГОСТ 14254-2015 (docs.cntd.ru) + табл. 5.7",
-    extUrl: "https://docs.cntd.ru/document/1200136066#:~:text=IP",
-    extPhrase: "IP"
+    extUrl: "https://docs.cntd.ru/document/1200136066"
   },
   {
     id: 188,
@@ -294,8 +290,7 @@ const questionsPart4 = [
     correct: 3,
     explanation: "Электротехническая сталь (ГОСТ 21427.1/21427.2-83): «потери складываются из гистерезиса и вихревых токов; важнейшие свойства — низкие потери на гистерезис и высокая магнитная проводимость»; легируется кремнием (изотропная до 4,5% Si). Источник: ГОСТ 21427.1-83, 21427.2-83 [docs.cntd.ru].",
     source: "ГОСТ 21427.1-83 / 21427.2-83 (docs.cntd.ru)",
-    extUrl: "https://docs.cntd.ru/document/1200009104#:~:text=%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%B0%D0%BB%D1%8C",
-    extPhrase: "электротехническая сталь"
+    extUrl: "https://docs.cntd.ru/document/1200009104"
   },
   {
     id: 190,
@@ -325,8 +320,8 @@ const questionsPart4 = [
     correct: 1,
     explanation: "Инкрементный энкодер: «выдаёт импульсы при вращении, по которым определяют направление вращения и величину углового перемещения». Через частоту импульсов вычисляют угловую скорость. Источник: инкрементальный энкодер [innodrive.ru, darxton.ru].",
     source: "Инкрем. энкодеры (innodrive.ru, darxton.ru)",
-    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%B8%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BD%D0%BA%D0%BE%D0%B4%D0%B5%D1%80",
-    extPhrase: "инкрементальный энкодер"
+    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%98%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%8D%D0%BD%D0%BA%D0%BE%D0%B4%D0%B5%D1%80%D1%8B%2C%20%D0%B2%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B8%D0%B5%20%D0%BE%D1%82%20%D0%B0%D0%B1%D1%81%D0%BE%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85%2C%20%D0%B2%D1%8B%D0%B4%D0%B0%D1%8E%D1%82%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BE%20%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B8",
+    extPhrase: "Инкрементальные энкодеры, в отличие от абсолютных, выдают информацию о положении"
   },
   {
     id: 192,
@@ -341,8 +336,8 @@ const questionsPart4 = [
     correct: 1,
     explanation: "«Квадратура выхода (каналы A и B), сдвинутые на 90°, позволяет определить направление вращения: при вращении в одном направлении канал А ведёт канал В, в противоположном — В ведёт А». Одноканальный датчик направление не определяет. Источник: инкрементальный энкодер [darxton.ru, megasensor.com].",
     source: "Квадратурный энкодер (darxton.ru)",
-    extUrl: "https://darxton.ru/wiki-article/inkrementalnye-enkodery/#:~:text=%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D1%8F",
-    extPhrase: "направление вращения"
+    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%9D%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F%D0%B5%D1%82%D1%81%D1%8F%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%B8%D0%BB%D0%B8%20%D0%BE%D1%82%D1%81%D1%82%D0%B0%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%B8%D0%BC%D0%BF%D1%83%D0%BB%D1%8C%D1%81%D0%BE%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%B7%20%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2",
+    extPhrase: "Направление вращения определяется опережением или отставанием импульсов одного из каналов"
   },
   {
     id: 193,
@@ -357,8 +352,8 @@ const questionsPart4 = [
     correct: 1,
     explanation: "Датчики с sin/cos-каналами выдают аналоговые сигналы, что за счёт интерполяции даёт очень высокое разрешение (точнее импульсных), но требует сложнее обработки и чувствительнее к помехам. Источник: инкрементальные энкодеры (sin/cos интерфейс) [baumer-russia.ru].",
     source: "sin/cos энкодеры (baumer-russia.ru)",
-    extUrl: "https://baumer-russia.ru/kak-vybrat-inkrementalnyj-enkoder-polnoe-rukovodstvo/#:~:text=%D1%80%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5",
-    extPhrase: "разрешение"
+    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%A0%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D0%BD%D0%BA%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BA%D0%B0%D0%BA%D0%BE%D0%B5%20%D0%BC%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B0%D0%BB%D0%B0",
+    extPhrase: "Разрешение инкрементального энкодера определяет какое минимальное перемещение вала"
   },
   {
     id: 194,
@@ -374,8 +369,8 @@ const questionsPart4 = [
     multi: true,
     explanation: "«В отличие от инкрементального, абсолютный энкодер хранит информацию о текущем положении после выключения питания» и сразу выдаёт код положения. Источник: абсолютный vs инкрементальный энкодер [innodrive.ru].",
     source: "Абс. vs инкрем. (innodrive.ru)",
-    extUrl: "https://innodrive.ru/articles/enkodery/absolyutnyj-i-inkrementalnyj-ehnkoder/#:~:text=%D0%B0%D0%B1%D1%81%D0%BE%D0%BB%D1%8E%D1%82%D0%BD",
-    extPhrase: "абсолютн"
+    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%98%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%8D%D0%BD%D0%BA%D0%BE%D0%B4%D0%B5%D1%80%D1%8B%2C%20%D0%B2%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B8%D0%B5%20%D0%BE%D1%82%20%D0%B0%D0%B1%D1%81%D0%BE%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85%2C%20%D0%B2%D1%8B%D0%B4%D0%B0%D1%8E%D1%82%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BE%20%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B8",
+    extPhrase: "Инкрементальные энкодеры, в отличие от абсолютных, выдают информацию о положении"
   },
   {
     id: 195,
@@ -390,8 +385,8 @@ const questionsPart4 = [
     correct: 3,
     explanation: "Наибольшее разрешение — у sin/cos-инкрементных (за счёт интерполяции) и абсолютных энкодеров высокого разрешения (24…32 бит). Источник: энкодеры [baumer-russia.ru, innodrive.ru].",
     source: "Энкодеры (baumer-russia.ru)",
-    extUrl: "https://baumer-russia.ru/kak-vybrat-inkrementalnyj-enkoder-polnoe-rukovodstvo/#:~:text=%D1%80%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5",
-    extPhrase: "разрешение"
+    extUrl: "https://innodrive.ru/articles/inkrementalnyj-ehnkoder/#:~:text=%D0%A0%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D0%BD%D0%BA%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BA%D0%B0%D0%BA%D0%BE%D0%B5%20%D0%BC%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B0%D0%BB%D0%B0",
+    extPhrase: "Разрешение инкрементального энкодера определяет какое минимальное перемещение вала"
   },
   {
     id: 196,
@@ -406,8 +401,7 @@ const questionsPart4 = [
     correct: 3,
     explanation: "Резольвер генерирует два аналоговых сигнала: «выходное напряжение одной обмотки пропорционально синусу угла поворота ротора, а другой — косинусу». Источник: вращающийся трансформатор / резольвер [Википедия; volgaelectroservice.ru].",
     source: "Резольвер/вращ. трансформатор (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%92%D1%80%D0%B0%D1%89%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D1%80#:~:text=%D1%81%D0%B8%D0%BD%D1%83%D1%81",
-    extPhrase: "синус"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%92%D1%80%D0%B0%D1%89%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D1%80"
   },
   {
     id: 197,
@@ -422,8 +416,7 @@ const questionsPart4 = [
     correct: 1,
     explanation: "«Резольвер — это вращающийся трансформатор, принцип работы — преобразование угла поворота в электрическое напряжение»; на статоре две взаимно перпендикулярные обмотки (sin и cos). Источник: вращающийся трансформатор [Википедия].",
     source: "Вращающийся трансформатор (Википедия)",
-    extUrl: "https://ru.wikipedia.org/wiki/%D0%92%D1%80%D0%B0%D1%89%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D1%80#:~:text=%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D1%80",
-    extPhrase: "вращающийся трансформатор"
+    extUrl: "https://ru.wikipedia.org/wiki/%D0%92%D1%80%D0%B0%D1%89%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D1%80"
   },
   {
     id: 198,
@@ -452,8 +445,7 @@ const questionsPart4 = [
     correct: 0,
     explanation: "Тензорезисторные датчики силы получили наибольшее распространение: «при нагрузке чувствительный элемент деформируется, меняя сопротивление тензорезистора»; для точности и термостабильности строятся по мостовой схеме Уитстона. Источник: тензодатчики [tts-kazan.ru, smartves.ru].",
     source: "Тензодатчики (tts-kazan.ru, smartves.ru)",
-    extUrl: "https://smartves.ru/info/tenzodatchik/#:~:text=%D1%82%D0%B5%D0%BD%D0%B7%D0%BE%D1%80%D0%B5%D0%B7%D0%B8%D1%81%D1%82%D0%BE%D1%80",
-    extPhrase: "тензорезистор"
+    extUrl: "https://smartves.ru/info/tenzodatchik/"
   },
   {
     id: 200,
@@ -484,8 +476,7 @@ const questionsPart4 = [
     correct: 1,
     explanation: "Сигнал с датчика момента на вращающемся валу снимают через токосъёмник (ВКУ) или бесконтактно — индукционно, по радиоканалу (телеметрия), оптически. Источник: токосъёмники/телеметрия моментных датчиков [motioncontroltips.com].",
     source: "Токосъёмники моментных датчиков",
-    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/#:~:text=torque",
-    extPhrase: "torque"
+    extUrl: "https://www.motioncontroltips.com/what-is-a-slip-ring/"
   },
   {
     id: 202,
@@ -514,8 +505,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "По формулировке исходного вопроса верный вариант — растягивающие, сжимающие и крутящие моменты. Авторитетные источники: «S-образные датчики применяются для измерения как растяжения, так и сжатия» (осевые нагрузки), мост Уитстона. По ним крутящий момент S-датчики штатно не измеряют — расхождение с вопросом; уточнить у лектора. Источник: S-образные тензодатчики [bestves.com, mt.com].",
     source: "S-датчики (bestves.com, mt.com); уточнить у лектора",
-    extUrl: "https://www.mt.com/ru/ru/home/products/Industrial_Weighing_Solutions/weigh-modules-load-cells-weighing-sensors/load-cells.html#:~:text=load%20cell",
-    extPhrase: "load cell"
+    extUrl: "https://www.mt.com/ru/ru/home/products/Industrial_Weighing_Solutions/weigh-modules-load-cells-weighing-sensors/load-cells.html"
   },
   {
     id: 204,
@@ -530,8 +520,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "Мембранные тензодатчики измеряют давление (распределённое по площади мембраны) и сосредоточенные сжимающие силы (через шток/пятак) за счёт деформации мембраны с тензорезисторами. Источник: тензодатчики (мембранный тип) [smartves.ru].",
     source: "Мембранные тензодатчики (smartves.ru)",
-    extUrl: "https://smartves.ru/info/tenzodatchik/#:~:text=%D0%BC%D0%B5%D0%BC%D0%B1%D1%80%D0%B0%D0%BD%D0%BD",
-    extPhrase: "мембранн"
+    extUrl: "https://smartves.ru/info/tenzodatchik/"
   },
   {
     id: 205,
@@ -546,8 +535,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "«Компенсационный маятниковый акселерометр — прибор, в котором чувствительный элемент удерживается в нейтральном положении системой отрицательной обратной связи; измеряется сила, нужная для возврата массы в нуль». Прямого преобразования датчик измеряет смещение/деформацию массы. Источник: компенсационный акселерометр [findpatent.ru; cyberleninka.ru].",
     source: "Компенсац. акселерометр (findpatent.ru)",
-    extUrl: "https://findpatent.ru/patent/239/2399060.html#:~:text=%D0%BA%D0%BE%D0%BC%D0%BF%D0%B5%D0%BD%D1%81%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD",
-    extPhrase: "компенсационн"
+    extUrl: "https://findpatent.ru/patent/239/2399060.html"
   },
   {
     id: 206,
@@ -562,8 +550,7 @@ const questionsPart4 = [
     correct: 3,
     explanation: "Однокомпонентный акселерометр измеряет ускорение по одной оси, многокомпонентный (двух-/трёхосевой) — по нескольким взаимно перпендикулярным осям одновременно (полный вектор). Источник: инерциальные датчики/акселерометры [masters.donntu.org].",
     source: "Инерц. датчики (masters.donntu.org)",
-    extUrl: "http://masters.donntu.org/2013/fkita/perebeinos/library/article3.htm#:~:text=%D0%B0%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80",
-    extPhrase: "акселерометр"
+    extUrl: "http://masters.donntu.org/2013/fkita/perebeinos/library/article3.htm"
   },
   {
     id: 207,
@@ -578,8 +565,7 @@ const questionsPart4 = [
     correct: 3,
     explanation: "«Принцип определения углов акселерометром основан на измерении проекций вектора ускорения свободного падения на оси акселерометра» — то есть акселерометр работает как инклинометр (датчик угла наклона: крен, тангаж). Источник: определение угла наклона акселерометром [bitaks.com, sensset.ru].",
     source: "Инклинометр-акселерометр (bitaks.com)",
-    extUrl: "http://bitaks.com/resources/inclinometer/content.html#:~:text=%D1%83%D1%81%D0%BA%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%B0%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F",
-    extPhrase: "ускорения свободного падения"
+    extUrl: "http://bitaks.com/resources/inclinometer/content.html"
   },
   {
     id: 208,
@@ -594,8 +580,7 @@ const questionsPart4 = [
     correct: 2,
     explanation: "Точных границ в учебнике нет; приведены типовые значения пьезоэлектрических вибропреобразователей. Пример: акселерометр SV80 — чувствительность 10 мВ/мс², нижняя граница диапазона от 0,5 Гц, встроенный усилитель (IEPE). Типовые диапазоны: амплитудный 0,01…1000 g, частотный от ~1 Гц до 10–20 кГц, чувствительность единицы–сотни мВ/g. Источник: паспортные данные вибропреобразователей [algoritm.ru]; уточнить у лектора.",
     source: "Паспорта вибропреобразователей (algoritm.ru); уточнить у лектора",
-    extUrl: "https://algoritm.ru/catalog/accelerometr/sv80/#:~:text=SV%2080",
-    extPhrase: "SV 80"
+    extUrl: "https://algoritm.ru/catalog/accelerometr/sv80/"
   },
   {
     id: 209,
@@ -639,7 +624,6 @@ const questionsPart4 = [
     multi: true,
     explanation: "«PTC-термисторы (позисторы) применяют для защиты электродвигателей — при достижении предельной температуры обмотки их сопротивление резко возрастает»; для Pt100 используют температурные реле с аналоговыми входами. Источник: защита обмоток электродвигателя [elec.ru].",
     source: "Защита обмоток (elec.ru)",
-    extUrl: "https://www.elec.ru/publications/avtomatizatsija/9898/#:~:text=%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D1%80",
-    extPhrase: "термистор"
+    extUrl: "https://www.elec.ru/publications/avtomatizatsija/9898/"
   },
 ];
