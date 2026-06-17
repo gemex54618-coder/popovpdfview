@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#15171b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Тренажёр · Испытания технологических машин и оборудования</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0d0e10;
+  --bg-elev: #15171b;
+  --bg-card: #1a1d23;
+  --border: #2a2e36;
+  --border-light: #353a44;
+  --ink: #e8e6e1;
+  --ink-dim: #9a9690;
+  --ink-faint: #5e5b56;
+  --accent: #d4a849;
+  --accent-soft: #8a7340;
+  --green: #6b9560;
+  --red: #c45a4a;
+  --red-soft: #4a2a26;
+  --green-soft: #2a3a2a;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(212, 168, 73, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(107, 149, 96, 0.03) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Шапка */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  background: var(--bg-elev);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background-color: rgba(21, 23, 27, 0.92);
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.title-block { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.subject {
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.subject em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.subtitle {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.header-stats {
+  display: flex;
+  gap: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.stat-pill .label {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.stat-pill .value {
+  font-size: 1.05rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.stat-pill.accent .value { color: var(--accent); }
+.stat-pill.good .value { color: var(--green); }
+.stat-pill.bad .value { color: var(--red); }
+
+/* Основной контейнер */
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* Меню режимов */
+.modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.mode-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.25rem 1.4rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--sans);
+  color: var(--ink);
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mode-btn:hover {
+  border-color: var(--accent);
+  background: var(--bg-elev);
+  transform: translateY(-1px);
+}
+
+.mode-btn.active {
+  border-color: var(--accent);
+  background: rgba(212, 168, 73, 0.06);
+}
+
+.mode-btn .mode-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+}
+
+.mode-btn .mode-name {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.mode-btn .mode-desc {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  line-height: 1.4;
+}
+
+/* Карточка вопроса */
+.q-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.q-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.q-meta .section-name { color: var(--accent-soft); }
+.q-meta .q-number { color: var(--ink-dim); }
+
+.q-text {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+
+/* Варианты ответов */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  padding: 1rem 1.15rem 1rem 3.2rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink);
+  position: relative;
+  transition: all 0.12s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--ink-faint);
+  background: var(--bg-card);
+}
+
+.option:disabled { cursor: default; }
+
+.option-letter {
+  position: absolute;
+  left: 1.1rem;
+  top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+}
+
+.option.correct {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.option.correct .option-letter {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg);
+}
+
+.option.incorrect {
+  border-color: var(--red);
+  background: var(--red-soft);
+}
+
+.option.incorrect .option-letter {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--bg);
+}
+
+.option.dimmed { opacity: 0.45; }
+
+/* Множественный выбор: отмеченный, но ещё не проверенный вариант */
+.option.chosen {
+  border-color: var(--accent);
+  background: rgba(212, 168, 73, 0.10);
+}
+.option.chosen .option-letter {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.multi-hint {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: -0.5rem 0 1.1rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 2px solid var(--accent-soft);
+  background: rgba(212, 168, 73, 0.05);
+}
+
+/* Объяснение */
+.explanation {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--bg-elev);
+  border-left: 3px solid var(--accent);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanation-header {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+
+.explanation-text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.explanation-source {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border);
+}
+
+.explanation-source::before {
+  content: "→ ";
+  color: var(--accent-soft);
+}
+
+/* Кликабельная цитата из учебника */
+.cite-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-soft);
+  cursor: pointer;
+}
+.cite-link:hover {
+  border-bottom-style: solid;
+  background: rgba(212, 168, 73, 0.10);
+}
+
+/* Кнопка-источник под пояснением */
+.explanation-actions { margin-top: 0.85rem; }
+.src-btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.9rem;
+  background: rgba(212, 168, 73, 0.10);
+  border: 1px solid var(--accent-soft);
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.src-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+/* Модальный просмотрщик учебника */
+.pdf-modal {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(8, 9, 11, 0.86);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 2vh 2vw;
+}
+.pdf-modal.open { display: flex; }
+.pdf-modal-inner {
+  background: var(--bg-elev);
+  border: 1px solid var(--border-light);
+  width: 100%; max-width: 960px; height: 96vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.pdf-modal-bar {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  flex-wrap: wrap;
+}
+.pdf-modal-title { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
+.pdf-modal-hint { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); flex: 1; }
+.pdf-modal-close {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  padding: 0.5rem 0.9rem; background: transparent;
+  border: 1px solid var(--border-light); color: var(--ink-dim); cursor: pointer;
+}
+.pdf-modal-close:hover { border-color: var(--red); color: var(--red); }
+.pdf-modal-canvas-wrap {
+  position: relative; flex: 1; overflow: auto;
+  background: #2a2a2a; padding: 12px; text-align: center;
+}
+.pdf-canvas { box-shadow: 0 4px 18px rgba(0,0,0,0.5); max-width: 100%; }
+.pdf-highlight {
+  position: absolute;
+  background: rgba(212, 168, 73, 0.38);
+  outline: 1px solid rgba(212, 168, 73, 0.7);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.pdf-loading {
+  font-family: var(--mono); font-size: 0.8rem; color: var(--ink-dim);
+  padding: 2rem; text-align: center;
+}
+
+@media (max-width: 640px) {
+  .pdf-modal { padding: 0; }
+  .pdf-modal-inner { height: 100vh; max-width: 100%; border: none; }
+  .src-btn { width: 100%; text-align: center; }
+}
+
+/* Кнопки управления */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.btn.primary:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Прогресс бар */
+.progress-bar {
+  height: 3px;
+  background: var(--bg-card);
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* Дашборд статистики */
+.dashboard {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.dashboard h2 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.section-stats {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.75rem;
+}
+
+.section-stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.section-stats-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.section-stats-numbers {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+}
+
+.section-stats-bar {
+  height: 6px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-stats-bar-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.5s ease;
+}
+
+.section-stats-bar.weak .section-stats-bar-fill { background: var(--red); }
+.section-stats-bar.medium .section-stats-bar-fill { background: var(--accent); }
+
+.section-stats-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.weak-questions {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.weak-questions-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.65rem;
+}
+
+.weak-q-item {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  padding: 0.35rem 0;
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+.weak-q-item .num {
+  color: var(--accent);
+  margin-right: 0.5rem;
+}
+
+/* Финальный экран */
+.final-screen {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.final-score {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.final-score-label {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 2rem;
+}
+
+.final-grade {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+
+/* Утилитарные классы */
+.hidden { display: none !important; }
+.center { text-align: center; }
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--ink-faint);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+/* Адаптив: планшеты */
+@media (max-width: 900px) {
+  .header { padding: 1.25rem 1.5rem; }
+  .header-content { gap: 1rem; }
+  .subject { font-size: 1.45rem; }
+  .main { padding: 2.5rem 1.5rem 4rem; }
+}
+
+/* Адаптив: телефоны */
+@media (max-width: 640px) {
+  /* Шапка перестаёт быть sticky — на телефоне это съедает экран */
+  .header {
+    position: static;
+    padding: 1rem 1.1rem 0.85rem;
+    background-color: var(--bg-elev);
+    backdrop-filter: none;
+  }
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+  .subject {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+  .subtitle { font-size: 0.62rem; letter-spacing: 0.15em; }
+
+  /* Статистика в шапке — компактнее, без переноса */
+  .header-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--border);
+  }
+  .stat-pill { gap: 0.05rem; }
+  .stat-pill .label { font-size: 0.55rem; letter-spacing: 0.1em; }
+  .stat-pill .value { font-size: 0.95rem; }
+
+  .main {
+    padding: 1.5rem 1rem 5rem;
+  }
+
+  /* Меню режимов — одна колонка на телефоне */
+  .modes {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+  .mode-btn {
+    padding: 1.1rem 1.2rem;
+    min-height: 60px;
+  }
+  .mode-btn .mode-name { font-size: 1.1rem; }
+  .mode-btn .mode-desc { font-size: 0.78rem; }
+
+  /* Карточка вопроса — на телефоне края без внутренних полей-«монолитов» */
+  .q-card {
+    padding: 1.25rem 1.1rem;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+  }
+  .q-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.62rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
+  .q-text {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Варианты ответа — tap-target ≥48px, буквы поменьше */
+  .options { gap: 0.55rem; }
+  .option {
+    padding: 0.85rem 0.9rem 0.85rem 2.6rem;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    min-height: 48px;
+  }
+  .option-letter {
+    left: 0.7rem;
+    top: 0.85rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.72rem;
+  }
+
+  /* Объяснение */
+  .explanation {
+    padding: 1rem 1.05rem;
+    margin-top: 1.2rem;
+  }
+  .explanation-text { font-size: 0.88rem; }
+  .explanation-source { font-size: 0.68rem; }
+
+  /* Кнопки управления — на всю ширину, нормальный тап */
+  .controls {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+  .controls .btn {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    min-height: 48px;
+    font-size: 0.78rem;
+  }
+
+  /* Дашборд по разделам */
+  .dashboard h2 { font-size: 1.4rem; }
+  .section-stats {
+    padding: 1.1rem 1.15rem;
+  }
+  .section-stats-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .section-stats-title { font-size: 1.05rem; }
+  .section-stats-numbers { font-size: 0.78rem; }
+
+  /* Финальный экран */
+  .final-score { font-size: 4rem; }
+  .final-score-label { font-size: 0.72rem; }
+  .final-grade { font-size: 1.2rem; }
+}
+
+/* Очень узкие телефоны (iPhone SE и компактные Android) */
+@media (max-width: 380px) {
+  .header { padding: 0.85rem 0.9rem 0.75rem; }
+  .subject { font-size: 1.1rem; }
+  .header-stats { gap: 0.4rem; }
+  .stat-pill .label { font-size: 0.5rem; }
+  .stat-pill .value { font-size: 0.85rem; }
+  .main { padding: 1.2rem 0.85rem 4rem; }
+  .q-card { padding: 1.1rem 0.95rem; }
+  .q-text { font-size: 1.02rem; }
+  .option { font-size: 0.86rem; padding: 0.8rem 0.8rem 0.8rem 2.4rem; }
+}
+
+/* Safe area для iPhone с челкой/Dynamic Island */
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-left: max(1.1rem, env(safe-area-inset-left));
+    padding-right: max(1.1rem, env(safe-area-inset-right));
+  }
+  .main {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-content">
+    <div class="title-block">
+      <div class="subject">Испытания технологических <em>машин и оборудования</em></div>
+      <div class="subtitle">тренажёр · версия 3.0 · 211 вопросов · цитаты со ссылкой на учебник</div>
+    </div>
+    <div class="header-stats" id="headerStats">
+      <div class="stat-pill"><span class="label">Изучено</span><span class="value" id="hsStudied">0</span></div>
+      <div class="stat-pill good"><span class="label">Верно</span><span class="value" id="hsCorrect">0</span></div>
+      <div class="stat-pill bad"><span class="label">Ошибок</span><span class="value" id="hsWrong">0</span></div>
+      <div class="stat-pill accent"><span class="label">Точность</span><span class="value" id="hsAcc">—</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="main" id="main">
+  <!-- Контент рендерится через JS -->
+</main>
+
+<!-- Подгрузка баз вопросов -->
+<script src="questions_part1.js"></script>
+<script src="questions_part2.js"></script>
+<script src="questions_part3.js"></script>
+<script src="questions_part4.js"></script>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// СОСТОЯНИЕ
+// ─────────────────────────────────────────────────────────────
+const allQuestions = [
+  ...questionsPart1,
+  ...questionsPart2,
+  ...questionsPart3,
+  ...questionsPart4
+];
+
+// Уникальные секции в порядке появления
+const sections = [...new Set(allQuestions.map(q => q.section))];
+
+const STORAGE_KEY = 'ispyt_trainer_stats_v1';
+
+let stats = loadStats();
+
+function loadStats() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return { perQuestion: {} }; // {id: {correct: n, wrong: n, lastAnswer: idx, lastCorrect: bool}}
+}
+
+function saveStats() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+  } catch (e) {
+    console.error('Не удалось сохранить статистику:', e);
+  }
+}
+
+function recordAnswer(qid, chosenIdx, isCorrect) {
+  if (!stats.perQuestion[qid]) {
+    stats.perQuestion[qid] = { correct: 0, wrong: 0 };
+  }
+  const s = stats.perQuestion[qid];
+  if (isCorrect) s.correct++;
+  else s.wrong++;
+  s.lastAnswer = chosenIdx;
+  s.lastCorrect = isCorrect;
+  saveStats();
+  updateHeaderStats();
+}
+
+function getQuestionAcc(qid) {
+  const s = stats.perQuestion[qid];
+  if (!s) return null;
+  const total = s.correct + s.wrong;
+  if (total === 0) return null;
+  return s.correct / total;
+}
+
+function updateHeaderStats() {
+  let total = 0, correct = 0, wrong = 0;
+  Object.values(stats.perQuestion).forEach(s => {
+    correct += s.correct;
+    wrong += s.wrong;
+  });
+  total = correct + wrong;
+  document.getElementById('hsStudied').textContent = Object.keys(stats.perQuestion).length + ' / ' + allQuestions.length;
+  document.getElementById('hsCorrect').textContent = correct;
+  document.getElementById('hsWrong').textContent = wrong;
+  document.getElementById('hsAcc').textContent = total > 0 ? Math.round(100 * correct / total) + '%' : '—';
+}
+
+// ─────────────────────────────────────────────────────────────
+// УТИЛИТЫ
+// ─────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function pickWeakQuestions(n) {
+  // Сначала те, на которые отвечали неверно последний раз
+  const recentWrong = allQuestions.filter(q => {
+    const s = stats.perQuestion[q.id];
+    return s && s.lastCorrect === false;
+  });
+  // Потом — с низкой точностью (но отвеченные хотя бы раз)
+  const lowAcc = allQuestions
+    .filter(q => {
+      const s = stats.perQuestion[q.id];
+      if (!s || s.lastCorrect === false) return false;
+      const acc = getQuestionAcc(q.id);
+      return acc !== null && acc < 0.6;
+    })
+    .sort((a, b) => getQuestionAcc(a.id) - getQuestionAcc(b.id));
+  // Потом — неизученные
+  const unstudied = allQuestions.filter(q => !stats.perQuestion[q.id]);
+
+  const combined = [...recentWrong, ...lowAcc, ...unstudied];
+  const unique = [];
+  const seen = new Set();
+  for (const q of combined) {
+    if (!seen.has(q.id)) { seen.add(q.id); unique.push(q); }
+    if (unique.length >= n) break;
+  }
+  return unique;
+}
+
+// ─────────────────────────────────────────────────────────────
+// СОСТОЯНИЕ СЕАНСА
+// ─────────────────────────────────────────────────────────────
+let session = null; // {questions: [], idx: 0, sessionCorrect: 0, sessionWrong: 0, mode: 'all'|'weak'|'section'}
+
+function startSession(mode, sectionName) {
+  let questions;
+  if (mode === 'all') {
+    questions = shuffle(allQuestions);
+  } else if (mode === 'weak') {
+    questions = pickWeakQuestions(30);
+    if (questions.length === 0) {
+      renderMenu();
+      setTimeout(() => alert('Слабых мест пока не выявлено. Сначала пройди вопросы в режиме «все вопросы».'), 100);
+      return;
+    }
+  } else if (mode === 'section') {
+    questions = shuffle(allQuestions.filter(q => q.section === sectionName));
+  } else if (mode === 'quick') {
+    questions = shuffle(allQuestions).slice(0, 30);
+  }
+
+  session = {
+    questions: questions.map(q => ({
+      ...q,
+      // перемешиваем варианты, сохраняя индекс правильного
+      _shuffled: shuffleOptions(q)
+    })),
+    idx: 0,
+    sessionCorrect: 0,
+    sessionWrong: 0,
+    mode,
+    sectionName
+  };
+  renderQuestion();
+}
+
+function shuffleOptions(q) {
+  const indexed = q.options.map((opt, i) => ({ opt, originalIdx: i }));
+  const shuffled = shuffle(indexed);
+  const isMulti = Array.isArray(q.correct);
+  // Множество исходных индексов правильных ответов
+  const correctSet = new Set(isMulti ? q.correct : [q.correct]);
+  // Новые позиции правильных ответов после перемешивания
+  const correctIdxs = shuffled
+    .map((x, newIdx) => correctSet.has(x.originalIdx) ? newIdx : -1)
+    .filter(i => i !== -1);
+  return {
+    options: shuffled.map(x => x.opt),
+    isMulti,
+    correctIdxs,                 // массив правильных позиций
+    correctIdx: correctIdxs[0]   // для совместимости с одиночным выбором
+  };
+}
+
+// ─────────────────────────────────────────────────────────────
+// РЕНДЕР
+// ─────────────────────────────────────────────────────────────
+function renderMenu() {
+  session = null;
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="modes">
+      <button class="mode-btn" onclick="startSession('all')">
+        <span class="mode-num">01</span>
+        <span class="mode-name">Все вопросы</span>
+        <span class="mode-desc">Полный прогон 210 вопросов в случайном порядке</span>
+      </button>
+      <button class="mode-btn" onclick="startSession('quick')">
+        <span class="mode-num">02</span>
+        <span class="mode-name">Экзаменационная сессия</span>
+        <span class="mode-desc">30 случайных вопросов · 29–30 = 5, 28 = 4, 27 = 3</span>
+      </button>
+      <button class="mode-btn" onclick="startSession('weak')">
+        <span class="mode-num">03</span>
+        <span class="mode-name">Работа над ошибками</span>
+        <span class="mode-desc">Вопросы, на которые отвечал неверно или с трудом</span>
+      </button>
+    </div>
+
+    <div style="margin: 2.5rem 0 1rem;">
+      <div style="font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem;">по разделам</div>
+      <div class="modes" id="sectionsBlock"></div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <h2 style="font-family: var(--serif); font-size: 1.8rem; font-weight: 500; margin-bottom: 1.5rem;">Статистика по разделам</h2>
+      <div id="dashboard"></div>
+      <div style="margin-top: 2rem; text-align: center;">
+        <button class="btn" onclick="resetStats()">Сбросить всю статистику</button>
+      </div>
+    </div>
+  `;
+
+  // Рендер кнопок разделов
+  const sectionsBlock = document.getElementById('sectionsBlock');
+  sections.forEach((sec, i) => {
+    const sectionQs = allQuestions.filter(q => q.section === sec);
+    const studied = sectionQs.filter(q => stats.perQuestion[q.id]).length;
+    const btn = document.createElement('button');
+    btn.className = 'mode-btn';
+    btn.onclick = () => startSession('section', sec);
+    btn.innerHTML = `
+      <span class="mode-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="mode-name">${sec}</span>
+      <span class="mode-desc">${sectionQs.length} вопросов · изучено ${studied}/${sectionQs.length}</span>
+    `;
+    sectionsBlock.appendChild(btn);
+  });
+
+  renderDashboard();
+  updateHeaderStats();
+}
+
+function renderDashboard() {
+  const dash = document.getElementById('dashboard');
+  if (!dash) return;
+  dash.innerHTML = '';
+
+  const sectionData = sections.map(sec => {
+    const qs = allQuestions.filter(q => q.section === sec);
+    let totalC = 0, totalW = 0, studied = 0;
+    const weakList = [];
+    qs.forEach(q => {
+      const s = stats.perQuestion[q.id];
+      if (!s) return;
+      studied++;
+      totalC += s.correct;
+      totalW += s.wrong;
+      if (s.lastCorrect === false) weakList.push(q);
+    });
+    const total = totalC + totalW;
+    const acc = total > 0 ? totalC / total : null;
+    return { sec, qs, totalC, totalW, studied, acc, weakList };
+  });
+
+  if (sectionData.every(d => d.studied === 0)) {
+    dash.innerHTML = '<div class="empty">Статистики пока нет. Запусти любую сессию — данные начнут собираться.</div>';
+    return;
+  }
+
+  sectionData.forEach(d => {
+    const div = document.createElement('div');
+    div.className = 'section-stats';
+    let barClass = '';
+    let accText = '—';
+    if (d.acc !== null) {
+      const pct = Math.round(d.acc * 100);
+      accText = pct + '%';
+      if (d.acc < 0.5) barClass = 'weak';
+      else if (d.acc < 0.75) barClass = 'medium';
+    }
+    div.innerHTML = `
+      <div class="section-stats-header">
+        <div class="section-stats-title">${d.sec}</div>
+        <div class="section-stats-numbers">${d.totalC} верно · ${d.totalW} ошибок · <strong style="color: var(--ink);">${accText}</strong></div>
+      </div>
+      <div class="section-stats-bar ${barClass}">
+        <div class="section-stats-bar-fill" style="width: ${d.acc !== null ? d.acc * 100 : 0}%"></div>
+      </div>
+      <div class="section-stats-meta">изучено ${d.studied} из ${d.qs.length} вопросов</div>
+    `;
+    if (d.weakList.length > 0) {
+      const weakBlock = document.createElement('div');
+      weakBlock.className = 'weak-questions';
+      weakBlock.innerHTML = '<div class="weak-questions-title">Требуют повторения</div>';
+      d.weakList.slice(0, 5).forEach(q => {
+        const item = document.createElement('div');
+        item.className = 'weak-q-item';
+        item.innerHTML = `<span class="num">№${q.id}</span> ${q.question.length > 90 ? q.question.slice(0, 90) + '…' : q.question}`;
+        weakBlock.appendChild(item);
+      });
+      if (d.weakList.length > 5) {
+        const more = document.createElement('div');
+        more.className = 'weak-q-item';
+        more.style.color = 'var(--ink-faint)';
+        more.textContent = `… и ещё ${d.weakList.length - 5}`;
+        weakBlock.appendChild(more);
+      }
+      div.appendChild(weakBlock);
+    }
+    dash.appendChild(div);
+  });
+}
+
+function renderQuestion() {
+  multiSelected = new Set();
+  const main = document.getElementById('main');
+  const q = session.questions[session.idx];
+  const shuffled = q._shuffled;
+  const progress = ((session.idx) / session.questions.length) * 100;
+
+  let modeLabel;
+  if (session.mode === 'all') modeLabel = 'Все вопросы';
+  else if (session.mode === 'quick') modeLabel = 'Экзаменационная сессия';
+  else if (session.mode === 'weak') modeLabel = 'Работа над ошибками';
+  else if (session.mode === 'section') modeLabel = session.sectionName;
+
+  main.innerHTML = `
+    <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div>
+
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="section-name">${q.section}</span>
+        <span class="q-number">№${q.id} · ${session.idx + 1} из ${session.questions.length} · ${modeLabel}</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      ${shuffled.isMulti ? `<div class="multi-hint">Несколько правильных ответов — отметьте все верные и нажмите «Проверить»</div>` : ``}
+      <div class="options" id="options">
+        ${shuffled.options.map((opt, i) => `
+          <button class="option" data-idx="${i}" onclick="${shuffled.isMulti ? `toggleOption(${i})` : `answerQuestion(${i})`}">
+            <span class="option-letter">${String.fromCharCode(1040 + i)}</span>
+            ${opt}
+          </button>
+        `).join('')}
+      </div>
+      <div id="explanationSlot"></div>
+      <div class="controls">
+        <button class="btn" onclick="renderMenu()">← В меню</button>
+        ${shuffled.isMulti ? `<button class="btn primary" id="checkBtn" onclick="checkMulti()" disabled>Проверить</button>` : ``}
+        <button class="btn primary hidden" id="nextBtn" onclick="nextQuestion()">
+          ${session.idx === session.questions.length - 1 ? 'Завершить →' : 'Дальше →'}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Множественный выбор ──────────────────────────────────────
+let multiSelected = new Set();
+
+function toggleOption(idx) {
+  if (multiSelected.has(idx)) multiSelected.delete(idx);
+  else multiSelected.add(idx);
+  const el = document.querySelector(`.option[data-idx="${idx}"]`);
+  if (el) el.classList.toggle('chosen', multiSelected.has(idx));
+  const checkBtn = document.getElementById('checkBtn');
+  if (checkBtn) checkBtn.disabled = multiSelected.size === 0;
+}
+
+function checkMulti() {
+  const q = session.questions[session.idx];
+  const correctIdxs = q._shuffled.correctIdxs;
+  const correctSet = new Set(correctIdxs);
+  // Полное совпадение набора: все верные отмечены и ничего лишнего
+  const chosen = multiSelected;
+  const isCorrect = chosen.size === correctSet.size &&
+                    [...chosen].every(i => correctSet.has(i));
+
+  if (isCorrect) session.sessionCorrect++;
+  else session.sessionWrong++;
+  recordAnswer(q.id, [...chosen].sort((a,b)=>a-b).join(','), isCorrect);
+
+  document.querySelectorAll('.option').forEach((el, i) => {
+    el.disabled = true;
+    el.classList.remove('chosen');
+    if (correctSet.has(i)) el.classList.add('correct');
+    else if (chosen.has(i)) el.classList.add('incorrect');
+    else el.classList.add('dimmed');
+  });
+
+  const checkBtn = document.getElementById('checkBtn');
+  if (checkBtn) checkBtn.classList.add('hidden');
+
+  const slot = document.getElementById('explanationSlot');
+  slot.innerHTML = explanationHTML(q, isCorrect ? '✓ Верно' : '✗ Неверно — правильны все отмеченные зелёным варианты:');
+  document.getElementById('nextBtn').classList.remove('hidden');
+  setTimeout(() => slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+function answerQuestion(chosenIdx) {
+  const q = session.questions[session.idx];
+  const correctIdx = q._shuffled.correctIdx;
+  const isCorrect = chosenIdx === correctIdx;
+
+  if (isCorrect) session.sessionCorrect++;
+  else session.sessionWrong++;
+
+  recordAnswer(q.id, chosenIdx, isCorrect);
+
+  // Подсветка вариантов
+  const optionsEls = document.querySelectorAll('.option');
+  optionsEls.forEach((el, i) => {
+    el.disabled = true;
+    if (i === correctIdx) el.classList.add('correct');
+    else if (i === chosenIdx) el.classList.add('incorrect');
+    else el.classList.add('dimmed');
+  });
+
+  // Объяснение
+  const slot = document.getElementById('explanationSlot');
+  slot.innerHTML = explanationHTML(q, isCorrect ? '✓ Верно' : '✗ Неверно — почему правильный ответ другой:');
+
+  document.getElementById('nextBtn').classList.remove('hidden');
+
+  // Скролл к объяснению на мобильных
+  setTimeout(() => slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+// ─────────────────────────────────────────────────────────────
+// ПОЯСНЕНИЕ С КЛИКАБЕЛЬНЫМ ИСТОЧНИКОМ
+// ─────────────────────────────────────────────────────────────
+function escAttr(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')
+                  .replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function explanationHTML(q, header) {
+  let body = q.explanation;
+  let sourceBtn = '';
+
+  if (q.pdfPage) {
+    body = body.replace(/«([^»]+)»/, function(m, inner) {
+      return '«<a href="#" class="cite-link" onclick="openLecture(' + q.pdfPage + ", '" + escAttr(q.pdfPhrase || inner) + "'); return false;\" title=\"Открыть учебник на стр. " + q.pdfPage + '">' + inner + '</a>»';
+    });
+    sourceBtn = '<button class="src-btn" onclick="openLecture(' + q.pdfPage + ", '" + escAttr(q.pdfPhrase || '') + "')\">📖 Открыть в учебнике · стр. " + q.pdfPage + '</button>';
+  } else if (q.extUrl) {
+    sourceBtn = '<a class="src-btn" href="' + escAttr(q.extUrl) + '" target="_blank" rel="noopener">🔗 Открыть источник' + (q.extPhrase ? ' · «' + escAttr(q.extPhrase) + '»' : '') + '</a>';
+  }
+
+  return '' +
+    '<div class="explanation">' +
+      '<div class="explanation-header">' + header + '</div>' +
+      '<div class="explanation-text">' + body + '</div>' +
+      '<div class="explanation-source">' + q.source + '</div>' +
+      (sourceBtn ? '<div class="explanation-actions">' + sourceBtn + '</div>' : '') +
+    '</div>';
+}
+
+// ─── Встроенный просмотрщик учебника (PDF.js) с подсветкой ───
+let pdfDocPromise = null;
+function loadPdfJs() {
+  if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+  return new Promise(function(resolve, reject) {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    s.onload = function() {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      resolve(window.pdfjsLib);
+    };
+    s.onerror = function() { reject(new Error('Не удалось загрузить PDF.js')); };
+    document.head.appendChild(s);
+  });
+}
+
+function openLecture(pageNum, phrase) {
+  let modal = document.getElementById('pdfModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'pdfModal';
+    modal.className = 'pdf-modal';
+    modal.innerHTML =
+      '<div class="pdf-modal-inner">' +
+        '<div class="pdf-modal-bar">' +
+          '<span class="pdf-modal-title">Учебник · стр. <span id="pdfPageLabel"></span></span>' +
+          '<span class="pdf-modal-hint" id="pdfHint"></span>' +
+          '<button class="pdf-modal-close" onclick="closeLecture()">✕ Закрыть</button>' +
+        '</div>' +
+        '<div class="pdf-modal-canvas-wrap" id="pdfCanvasWrap">' +
+          '<div class="pdf-loading" id="pdfLoading">Загрузка страницы…</div>' +
+        '</div>' +
+      '</div>';
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeLecture(); });
+    document.body.appendChild(modal);
+  }
+  modal.classList.add('open');
+  document.getElementById('pdfPageLabel').textContent = pageNum;
+  document.getElementById('pdfHint').textContent = phrase ? 'ищем фрагмент…' : '';
+  renderPdfPage(pageNum, phrase);
+}
+
+function closeLecture() {
+  const m = document.getElementById('pdfModal');
+  if (m) m.classList.remove('open');
+}
+
+async function renderPdfPage(pageNum, phrase) {
+  const wrap = document.getElementById('pdfCanvasWrap');
+  const loading = document.getElementById('pdfLoading');
+  const hint = document.getElementById('pdfHint');
+  try {
+    if (loading) loading.style.display = 'block';
+    const pdfjsLib = await loadPdfJs();
+    if (!pdfDocPromise) pdfDocPromise = pdfjsLib.getDocument('lectures.pdf').promise;
+    const pdf = await pdfDocPromise;
+    const page = await pdf.getPage(pageNum);
+
+    const avail = Math.min(wrap.clientWidth - 24, 900);
+    const base = page.getViewport({ scale: 1 });
+    const scale = Math.min(avail / base.width, 1.6);
+    const viewport = page.getViewport({ scale: scale });
+
+    wrap.querySelectorAll('canvas, .pdf-highlight').forEach(function(el) { el.remove(); });
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'pdf-canvas';
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    wrap.appendChild(canvas);
+    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+    if (loading) loading.style.display = 'none';
+
+    if (phrase) {
+      const norm = function(s) { return s.toLowerCase().replace(/ё/g,'е').replace(/[^а-я0-9]+/g,' ').trim(); };
+      const target = norm(phrase).split(' ').slice(0, 8).join(' ');
+      const targetWords = new Set(target.split(' ').filter(function(w){ return w.length > 2; }));
+      const tc = await page.getTextContent();
+      let hitCount = 0;
+      tc.items.forEach(function(it) {
+        const w = norm(it.str);
+        if (!w) return;
+        const hit = w.split(' ').some(function(x){ return x.length > 2 && targetWords.has(x); });
+        if (hit) {
+          const tx = pdfjsLib.Util.transform(viewport.transform, it.transform);
+          const fontH = Math.hypot(tx[2], tx[3]);
+          const hl = document.createElement('div');
+          hl.className = 'pdf-highlight';
+          hl.style.left = tx[4] + 'px';
+          hl.style.top = (tx[5] - fontH) + 'px';
+          hl.style.width = (it.width * scale) + 'px';
+          hl.style.height = (fontH * 1.15) + 'px';
+          wrap.appendChild(hl);
+          hitCount++;
+        }
+      });
+      if (hint) hint.textContent = hitCount ? '✦ фрагмент подсвечен' : 'фрагмент на странице';
+      const first = wrap.querySelector('.pdf-highlight');
+      if (first) setTimeout(function(){ first.scrollIntoView({ behavior:'smooth', block:'center' }); }, 50);
+    }
+  } catch (err) {
+    if (loading) { loading.style.display = 'block'; loading.textContent = 'Не удалось открыть учебник: ' + err.message; }
+  }
+}
+
+function nextQuestion() {
+  if (session.idx === session.questions.length - 1) {
+    renderFinal();
+  } else {
+    session.idx++;
+    renderQuestion();
+  }
+}
+
+function renderFinal() {
+  const total = session.sessionCorrect + session.sessionWrong;
+  const pct = Math.round(100 * session.sessionCorrect / total);
+  const correct = session.sessionCorrect;
+
+  let bigDisplay, smallLabel, grade, gradeColor;
+  if (session.mode === 'quick' && total === 30) {
+    let mark;
+    if (correct >= 29) { mark = '5'; grade = 'Отлично. Готов к экзамену.'; gradeColor = 'var(--green)'; }
+    else if (correct === 28) { mark = '4'; grade = 'Хорошо. Подтянуть несколько тем.'; gradeColor = 'var(--accent)'; }
+    else if (correct === 27) { mark = '3'; grade = 'Удовлетворительно. На грани — нужно поработать.'; gradeColor = 'var(--accent)'; }
+    else { mark = '2'; grade = 'Неудовлетворительно. Требуется серьёзная проработка.'; gradeColor = 'var(--red)'; }
+    bigDisplay = '<span style="color: ' + gradeColor + ';">' + mark + '</span>';
+    smallLabel = 'Экзаменационная оценка · ' + correct + ' из 30';
+  } else {
+    bigDisplay = pct + '<span style="font-size: 2.5rem; color: var(--ink-dim);">%</span>';
+    smallLabel = 'Результат сессии';
+    if (pct >= 90) grade = 'Превосходно. Готов к экзамену.';
+    else if (pct >= 75) grade = 'Хорошо. Доработать слабые места.';
+    else if (pct >= 60) grade = 'Удовлетворительно. Нужно повторение.';
+    else grade = 'Требуется серьёзная проработка материала.';
+    gradeColor = 'var(--ink)';
+  }
+
+  const main = document.getElementById('main');
+  main.innerHTML =
+    '<div class="final-screen">' +
+      '<div class="final-score">' + bigDisplay + '</div>' +
+      '<div class="final-score-label">' + smallLabel + '</div>' +
+      '<div class="final-grade" style="color: ' + gradeColor + ';">' + grade + '</div>' +
+      '<div style="font-family: var(--mono); font-size: 0.9rem; color: var(--ink-dim); margin-bottom: 2.5rem;">' +
+        session.sessionCorrect + ' верно · ' + session.sessionWrong + ' ошибок · из ' + total +
+      '</div>' +
+      '<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">' +
+        '<button class="btn primary" onclick="renderMenu()">← В меню</button>' +
+        '<button class="btn" onclick="startSession(\'' + session.mode + '\', \'' + (session.sectionName || '') + '\')">Повторить сессию</button>' +
+        (session.sessionWrong > 0 ? '<button class="btn" onclick="startSession(\'weak\')">Работа над ошибками →</button>' : '') +
+      '</div>' +
+    '</div>';
+}
+
+function resetStats() {
+  if (!confirm('Сбросить ВСЮ статистику? Это действие нельзя отменить.')) return;
+  stats = { perQuestion: {} };
+  saveStats();
+  renderMenu();
+}
+
+// ─── Инициализация ───
+renderMenu();
+</script>
+
+</body>
+</html>
