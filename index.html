@@ -426,11 +426,17 @@ body {
   position: relative; flex: 1; overflow: auto;
   background: #2a2a2a; padding: 12px; text-align: center;
 }
-.pdf-canvas { box-shadow: 0 4px 18px rgba(0,0,0,0.5); max-width: 100%; }
+/* Контейнер страницы: канвас + слой подсветки в одной системе координат */
+.pdf-page {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+}
+.pdf-canvas { display: block; }
 .pdf-highlight {
   position: absolute;
-  background: rgba(212, 168, 73, 0.38);
-  outline: 1px solid rgba(212, 168, 73, 0.7);
+  background: rgba(212, 168, 73, 0.42);
+  border-radius: 1px;
   pointer-events: none;
   mix-blend-mode: multiply;
 }
@@ -1331,43 +1337,112 @@ async function renderPdfPage(pageNum, phrase) {
     const scale = Math.min(avail / base.width, 1.6);
     const viewport = page.getViewport({ scale: scale });
 
-    wrap.querySelectorAll('canvas, .pdf-highlight').forEach(function(el) { el.remove(); });
+    // очистка
+    wrap.querySelectorAll('.pdf-page').forEach(function(el) { el.remove(); });
+
+    // контейнер страницы (канвас + подсветка в одной системе координат)
+    const pageDiv = document.createElement('div');
+    pageDiv.className = 'pdf-page';
+    pageDiv.style.width = viewport.width + 'px';
+    pageDiv.style.height = viewport.height + 'px';
 
     const canvas = document.createElement('canvas');
     canvas.className = 'pdf-canvas';
     canvas.width = viewport.width;
     canvas.height = viewport.height;
     const ctx = canvas.getContext('2d');
-    wrap.appendChild(canvas);
+    pageDiv.appendChild(canvas);
+    wrap.appendChild(pageDiv);
     await page.render({ canvasContext: ctx, viewport: viewport }).promise;
     if (loading) loading.style.display = 'none';
 
     if (phrase) {
-      const norm = function(s) { return s.toLowerCase().replace(/ё/g,'е').replace(/[^а-я0-9]+/g,' ').trim(); };
-      const target = norm(phrase).split(' ').slice(0, 8).join(' ');
-      const targetWords = new Set(target.split(' ').filter(function(w){ return w.length > 2; }));
+      const norm = function(s) { return s.toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9]+/g,''); };
+      // значимые слова искомой фразы (>2 символов)
+      const words = phrase.toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9\s]+/g,' ')
+                          .split(/\s+/).filter(function(w){ return w.length > 2; }).slice(0, 12);
       const tc = await page.getTextContent();
-      let hitCount = 0;
+
+      // поток «слов» страницы (тоже только >2 символов) с привязкой к item
+      const stream = [];
       tc.items.forEach(function(it) {
-        const w = norm(it.str);
-        if (!w) return;
-        const hit = w.split(' ').some(function(x){ return x.length > 2 && targetWords.has(x); });
-        if (hit) {
-          const tx = pdfjsLib.Util.transform(viewport.transform, it.transform);
-          const fontH = Math.hypot(tx[2], tx[3]);
+        it.str.toLowerCase().replace(/ё/g,'е').split(/\s+/).forEach(function(p) {
+          const n = norm(p);
+          if (n.length > 2) stream.push({ word: n, it: it });
+        });
+      });
+
+      // совпадение слов: точное, по префиксу, или по общему корню (для разных окончаний)
+      const eq = function(a, b) {
+        if (a === b || a.indexOf(b) === 0 || b.indexOf(a) === 0) return true;
+        // общий префикс длиной ≥5 (или ≥ длины короткого слова − 2) → считаем одним словом
+        const min = Math.min(a.length, b.length);
+        let p = 0;
+        while (p < min && a[p] === b[p]) p++;
+        return p >= 5 && p >= min - 2;
+      };
+      // длина непрерывного совпадения от stream[ss] и words[ww]
+      const runLen = function(ss, ww) {
+        let k = 0;
+        while (ss + k < stream.length && ww + k < words.length && eq(stream[ss + k].word, words[ww + k])) k++;
+        return k;
+      };
+      // лучший непрерывный отрезок: пробуем начинать с ЛЮБОГО слова фразы
+      let best = { len: 0, ss: -1 };
+      for (let ss = 0; ss < stream.length; ss++) {
+        for (let ww = 0; ww < words.length; ww++) {
+          if (eq(stream[ss].word, words[ww])) {
+            const len = runLen(ss, ww);
+            if (len > best.len) best = { len: len, ss: ss };
+            break;
+          }
+        }
+        if (best.len >= words.length) break;
+      }
+
+      // Порог: 3 слова подряд; но если совпавшие слова длинные (≥6 симв),
+      // достаточно 2 — а для очень «числовых» фраз и одного характерного слова.
+      let need = Math.min(3, words.length);
+      if (best.len >= 2 && best.ss >= 0) {
+        const w0 = stream[best.ss].word, w1 = stream[best.ss + 1] ? stream[best.ss + 1].word : '';
+        if (w0.length >= 6 && w1.length >= 6) need = 2;
+      }
+      // Запасной вариант для числовых фраз: одно длинное характерное слово (≥7 симв).
+      if (best.len < need) {
+        const longWords = words.filter(function(w){ return w.length >= 7; });
+        for (let ss = 0; ss < stream.length; ss++) {
+          let done = false;
+          for (let li = 0; li < longWords.length; li++) {
+            if (eq(stream[ss].word, longWords[li])) { best = { len: 1, ss: ss }; need = 1; done = true; break; }
+          }
+          if (done) break;
+        }
+      }
+
+      let hitCount = 0;
+      if (best.ss >= 0 && best.len >= need) {
+        const seen = new Set();
+        for (let s = best.ss; s < best.ss + best.len; s++) {
+          const it = stream[s].it;
+          if (seen.has(it)) continue;
+          seen.add(it);
+          // геометрия элемента: его transform → координаты viewport
+          const m = pdfjsLib.Util.transform(viewport.transform, it.transform);
+          const w = (it.width || 0) * scale;
+          const h = (it.height || Math.hypot(it.transform[2], it.transform[3])) * scale;
           const hl = document.createElement('div');
           hl.className = 'pdf-highlight';
-          hl.style.left = tx[4] + 'px';
-          hl.style.top = (tx[5] - fontH) + 'px';
-          hl.style.width = (it.width * scale) + 'px';
-          hl.style.height = (fontH * 1.15) + 'px';
-          wrap.appendChild(hl);
+          hl.style.left = m[4] + 'px';
+          hl.style.top = (m[5] - h) + 'px';   // m[5] — низ строки; верх = низ − высота
+          hl.style.width = w + 'px';
+          hl.style.height = (h * 1.12) + 'px';
+          pageDiv.appendChild(hl);
           hitCount++;
         }
-      });
-      if (hint) hint.textContent = hitCount ? '✦ фрагмент подсвечен' : 'фрагмент на странице';
-      const first = wrap.querySelector('.pdf-highlight');
-      if (first) setTimeout(function(){ first.scrollIntoView({ behavior:'smooth', block:'center' }); }, 50);
+      }
+      if (hint) hint.textContent = hitCount ? '✦ фрагмент подсвечен' : 'фрагмент на странице (не выделен)';
+      const first = pageDiv.querySelector('.pdf-highlight');
+      if (first) setTimeout(function(){ first.scrollIntoView({ behavior:'smooth', block:'center' }); }, 60);
     }
   } catch (err) {
     if (loading) { loading.style.display = 'block'; loading.textContent = 'Не удалось открыть учебник: ' + err.message; }
