@@ -294,6 +294,30 @@ body {
   color: var(--bg);
 }
 
+/* Пропущенный правильный ответ (верный, но не отмечен) — жёлтым */
+.option.missed {
+  border-color: var(--accent);
+  background: rgba(212, 168, 73, 0.12);
+}
+.option.missed .option-letter {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.option.missed::after {
+  content: "пропущен";
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
 .option.dimmed { opacity: 0.45; }
 
 /* Множественный выбор: отмеченный, но ещё не проверенный вариант */
@@ -1200,8 +1224,9 @@ function checkMulti() {
   document.querySelectorAll('.option').forEach((el, i) => {
     el.disabled = true;
     el.classList.remove('chosen');
-    if (correctSet.has(i)) el.classList.add('correct');
-    else if (chosen.has(i)) el.classList.add('incorrect');
+    if (correctSet.has(i) && chosen.has(i)) el.classList.add('correct');      // верный и выбран → зелёный
+    else if (correctSet.has(i) && !chosen.has(i)) el.classList.add('missed'); // верный, но не выбран → жёлтый
+    else if (chosen.has(i)) el.classList.add('incorrect');                    // выбран, но неверный → красный
     else el.classList.add('dimmed');
   });
 
@@ -1209,7 +1234,7 @@ function checkMulti() {
   if (checkBtn) checkBtn.classList.add('hidden');
 
   const slot = document.getElementById('explanationSlot');
-  slot.innerHTML = explanationHTML(q, isCorrect ? '✓ Верно' : '✗ Неверно — правильны все отмеченные зелёным варианты:');
+  slot.innerHTML = explanationHTML(q, isCorrect ? '✓ Верно' : '✗ Неверно — зелёным отмечены ваши верные, жёлтым — пропущенные правильные, красным — лишние:');
   document.getElementById('nextBtn').classList.remove('hidden');
   setTimeout(() => slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
