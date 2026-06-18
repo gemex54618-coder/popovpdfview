@@ -499,13 +499,14 @@ const questionsPart4 = [
     options: [
       "Тепловые потоки, проходящие через корпус датчика",
       "Давление рабочей жидкости",
-      "Растягивающие, сжимающие и крутящие моменты",
+      "Растягивающие и сжимающие нагрузки",
       "Только осевое растяжение без сжатия и момента"
     ],
     correct: 2,
-    explanation: "По формулировке исходного вопроса верный вариант — растягивающие, сжимающие и крутящие моменты. Авторитетные источники: «S-образные датчики применяются для измерения как растяжения, так и сжатия» (осевые нагрузки), мост Уитстона. По ним крутящий момент S-датчики штатно не измеряют — расхождение с вопросом; уточнить у лектора. Источник: S-образные тензодатчики [bestves.com, mt.com].",
-    source: "S-датчики (bestves.com, mt.com); уточнить у лектора",
-    extUrl: "https://www.mt.com/ru/ru/home/products/Industrial_Weighing_Solutions/weigh-modules-load-cells-weighing-sensors/load-cells.html"
+    explanation: "Ответ лектора: S-образные тензодатчики определяют растягивающие и сжимающие (осевые) нагрузки.",
+    source: "Ответ лектора (Попов)",
+    extUrl: "https://www.mt.com/ru/ru/home/products/Industrial_Weighing_Solutions/weigh-modules-load-cells-weighing-sensors/load-cells.html",
+    lecturer: true
   },
   {
     id: 204,

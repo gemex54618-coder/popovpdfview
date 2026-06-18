@@ -398,6 +398,18 @@ body {
 }
 
 /* Кнопка-источник под пояснением */
+.lecturer-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  background: var(--green-soft);
+  border: 1px solid var(--green);
+  padding: 0.35rem 0.7rem;
+  margin-bottom: 0.85rem;
+}
+
 .explanation-actions { margin-top: 0.85rem; }
 .src-btn {
   display: inline-block;
@@ -1289,9 +1301,12 @@ function explanationHTML(q, header) {
     sourceBtn = '<a class="src-btn" href="' + escAttr(q.extUrl) + '" target="_blank" rel="noopener">🔗 Открыть источник' + (q.extPhrase ? ' · «' + escAttr(q.extPhrase) + '»' : '') + '</a>';
   }
 
+  var lectBadge = q.lecturer ? '<div class="lecturer-badge">✓ Ответ подтверждён лектором (Попов)</div>' : '';
+
   return '' +
     '<div class="explanation">' +
       '<div class="explanation-header">' + header + '</div>' +
+      lectBadge +
       '<div class="explanation-text">' + body + '</div>' +
       '<div class="explanation-source">' + q.source + '</div>' +
       (sourceBtn ? '<div class="explanation-actions">' + sourceBtn + '</div>' : '') +
