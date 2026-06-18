@@ -1398,12 +1398,10 @@ async function renderPdfPage(pageNum, phrase) {
 
     if (phrase) {
       const norm = function(s) { return s.toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9]+/g,''); };
-      // значимые слова искомой фразы (>2 символов)
       const words = phrase.toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9\s]+/g,' ')
-                          .split(/\s+/).filter(function(w){ return w.length > 2; }).slice(0, 12);
+                          .split(/\s+/).filter(function(w){ return w.length > 2; });
       const tc = await page.getTextContent();
 
-      // поток «слов» страницы (тоже только >2 символов) с привязкой к item
       const stream = [];
       tc.items.forEach(function(it) {
         it.str.toLowerCase().replace(/ё/g,'е').split(/\s+/).forEach(function(p) {
@@ -1412,68 +1410,65 @@ async function renderPdfPage(pageNum, phrase) {
         });
       });
 
-      // совпадение слов: точное, по префиксу, или по общему корню (для разных окончаний)
       const eq = function(a, b) {
         if (a === b || a.indexOf(b) === 0 || b.indexOf(a) === 0) return true;
-        // общий префикс длиной ≥5 (или ≥ длины короткого слова − 2) → считаем одним словом
         const min = Math.min(a.length, b.length);
         let p = 0;
         while (p < min && a[p] === b[p]) p++;
-        return p >= 5 && p >= min - 2;
+        return p >= 4 && p >= min - 2;
       };
-      // длина непрерывного совпадения от stream[ss] и words[ww]
-      const runLen = function(ss, ww) {
-        let k = 0;
-        while (ss + k < stream.length && ww + k < words.length && eq(stream[ss + k].word, words[ww + k])) k++;
-        return k;
-      };
-      // лучший непрерывный отрезок: пробуем начинать с ЛЮБОГО слова фразы
-      let best = { len: 0, ss: -1 };
+
+      const GAP = 3; // сколько токенов потока можно пропустить между словами фразы (числа, переносы)
+      let best = { from: -1, to: -1, count: 0 };
       for (let ss = 0; ss < stream.length; ss++) {
-        for (let ww = 0; ww < words.length; ww++) {
-          if (eq(stream[ss].word, words[ww])) {
-            const len = runLen(ss, ww);
-            if (len > best.len) best = { len: len, ss: ss };
-            break;
+        let startWW = -1;
+        for (let w = 0; w < Math.min(3, words.length); w++) {
+          if (eq(stream[ss].word, words[w])) { startWW = w; break; }
+        }
+        if (startWW < 0) continue;
+        let si = ss, wi = startWW, count = 0, lastSi = ss;
+        while (si < stream.length && wi < words.length) {
+          if (eq(stream[si].word, words[wi])) { count++; lastSi = si; si++; wi++; }
+          else {
+            let found = -1;
+            for (let g = 1; g <= GAP && si + g < stream.length; g++) {
+              if (eq(stream[si + g].word, words[wi])) { found = si + g; break; }
+            }
+            if (found >= 0) si = found; else wi++;
           }
         }
-        if (best.len >= words.length) break;
+        if (count > best.count) best = { from: ss, to: lastSi, count: count };
+        if (best.count >= words.length) break;
       }
 
-      // Порог: 3 слова подряд; но если совпавшие слова длинные (≥6 симв),
-      // достаточно 2 — а для очень «числовых» фраз и одного характерного слова.
-      let need = Math.min(3, words.length);
-      if (best.len >= 2 && best.ss >= 0) {
-        const w0 = stream[best.ss].word, w1 = stream[best.ss + 1] ? stream[best.ss + 1].word : '';
-        if (w0.length >= 6 && w1.length >= 6) need = 2;
-      }
-      // Запасной вариант для числовых фраз: одно длинное характерное слово (≥7 симв).
-      if (best.len < need) {
+      // запасной вариант: одно длинное характерное слово
+      if (best.count < Math.min(3, words.length)) {
         const longWords = words.filter(function(w){ return w.length >= 7; });
         for (let ss = 0; ss < stream.length; ss++) {
           let done = false;
           for (let li = 0; li < longWords.length; li++) {
-            if (eq(stream[ss].word, longWords[li])) { best = { len: 1, ss: ss }; need = 1; done = true; break; }
+            if (eq(stream[ss].word, longWords[li])) { best = { from: ss, to: ss, count: 1 }; done = true; break; }
           }
           if (done) break;
         }
       }
 
       let hitCount = 0;
-      if (best.ss >= 0 && best.len >= need) {
+      const need = best.count === 1 ? 1 : Math.min(2, words.length);
+      if (best.from >= 0 && best.count >= need) {
+        // подсвечиваем ВСЕ элементы от первого до последнего совпавшего слова — фраза целиком
         const seen = new Set();
-        for (let s = best.ss; s < best.ss + best.len; s++) {
+        for (let s = best.from; s <= best.to; s++) {
           const it = stream[s].it;
           if (seen.has(it)) continue;
           seen.add(it);
-          // геометрия элемента: его transform → координаты viewport
           const m = pdfjsLib.Util.transform(viewport.transform, it.transform);
           const w = (it.width || 0) * scale;
           const h = (it.height || Math.hypot(it.transform[2], it.transform[3])) * scale;
           const hl = document.createElement('div');
           hl.className = 'pdf-highlight';
           hl.style.left = m[4] + 'px';
-          hl.style.top = (m[5] - h) + 'px';   // m[5] — низ строки; верх = низ − высота
+          hl.style.top = (m[5] - h) + 'px';
           hl.style.width = w + 'px';
           hl.style.height = (h * 1.12) + 'px';
           pageDiv.appendChild(hl);
